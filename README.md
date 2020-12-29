@@ -87,3 +87,7 @@
 ### 클라이언트랑 서버 연결
 
 - mysql -uroot -p -h(호스트주소 ex) localhost)
+
+### 20년 12월 29일
+
+- package.json에서 필요한 모듈 다운받기 (ex sanitize-html). cmd에서 패키지 제이손 있는 폴더로 가서 npm install하면 알아서 다운받아줌
