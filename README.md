@@ -82,3 +82,4 @@
 
 - JOIN!!
 - SELECT \* FROM topic LEFT JOIN author ON topic.author_id = author.id;
+- 만약 \*이 아닌 특정 구문을 보여줄때 겹치는 행이 있으면 표기해줘야함.
