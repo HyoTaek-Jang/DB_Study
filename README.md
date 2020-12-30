@@ -91,3 +91,64 @@
 ### 20년 12월 29일
 
 - package.json에서 필요한 모듈 다운받기 (ex sanitize-html). cmd에서 패키지 제이손 있는 폴더로 가서 npm install하면 알아서 다운받아줌
+
+### 20년 12월 31일
+
+- node에서 mysql사용
+
+1. mysql 모듈 require로 가져오기
+2. createConnection으로 db 연결하기
+3. .connect() 연결하고 데이터 가져올땐 .query() 가져다 쓰기
+
+```
+var mysql = require("mysql");
+//mysql 모듈 사용
+var connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "wkdWkddl1218",
+  database: "dbstudy",
+});
+
+connection.connect();
+
+connection.query("SELECT * FROM topic", function (error, results, fields) {
+  if (error) {
+    console.log(error);
+  }
+  console.log(results);
+});
+
+connection.end();
+
+```
+
+```
+ db.query(
+          `SELECT * FROM topic WHERE id = ${queryData.id}`,
+```
+
+- 여기서 쿼리데이터.id를 직접주는것이 아닌
+
+```
+db.query(
+          `SELECT * FROM topic WHERE id = ?`,[queryData.id],
+```
+
+- 로 ?에 값을 넣어주는 형식으로 걸러서 하는게 좋대
+
+```
+ db.query(
+        `INSERT INTO topic (title, description, created, author_id) VALUES(?, ?, NOW(), ?)`,
+        [post.title, description, 1],
+        (err, result) => {
+          if (err) throw err;
+          console.log(result.insertId);
+          response.writeHead(302, { Location: `/?id=${result.insertId}` });
+          response.end();
+        }
+      );
+    });
+```
+
+- result.insertId로 방금 insert한 row의 id를 받을 수 있음. 저거 ?는 다음 인자로 ,[]리스트에 값 순서대로 넣어주면 됨
