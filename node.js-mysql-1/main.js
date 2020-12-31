@@ -36,32 +36,6 @@ var app = http.createServer(function (request, response) {
         response.end(html);
       });
     } else {
-      /*
-      fs.readdir("./data", function (error, filelist) {
-        var filteredId = path.parse(queryData.id).base;
-        fs.readFile(`data/${filteredId}`, "utf8", function (err, description) {
-          var title = queryData.id;
-          var sanitizedTitle = sanitizeHtml(title);
-          var sanitizedDescription = sanitizeHtml(description, {
-            allowedTags: ["h1"],
-          });
-          var list = template.list(filelist);
-          var html = template.HTML(
-            sanitizedTitle,
-            list,
-            `<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
-            ` <a href="/create">create</a>
-                <a href="/update?id=${sanitizedTitle}">update</a>
-                <form action="delete_process" method="post">
-                  <input type="hidden" name="id" value="${sanitizedTitle}">
-                  <input type="submit" value="delete">
-                </form>`
-          );
-          response.writeHead(200);
-          response.end(html);
-        });
-      });
-      */
       db.query("SELECT * FROM topic", function (error, topics) {
         if (error) throw error;
         db.query(
@@ -78,7 +52,7 @@ var app = http.createServer(function (request, response) {
               list,
               `<h2>${title}</h2>${description}`,
               ` <a href="/create">create</a>
-                <a href="/update?id=${queryData.id}}">update</a>
+                <a href="/update?id=${queryData.id}">update</a>
                 <form action="delete_process" method="post">
                   <input type="hidden" name="id" value="${queryData.id}">
                   <input type="submit" value="delete">
@@ -134,31 +108,33 @@ var app = http.createServer(function (request, response) {
       );
     });
   } else if (pathname === "/update") {
-    fs.readdir("./data", function (error, filelist) {
-      var filteredId = path.parse(queryData.id).base;
-      fs.readFile(`data/${filteredId}`, "utf8", function (err, description) {
-        var title = queryData.id;
-        var list = template.list(filelist);
-        var html = template.HTML(
-          title,
-          list,
-          `
-            <form action="/update_process" method="post">
-              <input type="hidden" name="id" value="${title}">
-              <p><input type="text" name="title" placeholder="title" value="${title}"></p>
-              <p>
-                <textarea name="description" placeholder="description">${description}</textarea>
-              </p>
-              <p>
-                <input type="submit">
-              </p>
-            </form>
-            `,
-          `<a href="/create">create</a> <a href="/update?id=${title}">update</a>`
-        );
-        response.writeHead(200);
-        response.end(html);
-      });
+    db.query("SELECT * FROM topic", (err, data) => {
+      var list = template.list(data);
+      db.query(
+        `SELECT * FROM topic WHERE id = ${queryData.id}`,
+        (err, topic) => {
+          var html = template.HTML(
+            `${topic[0].title} - Update`,
+            list,
+            "",
+            `
+        <form action="/update_process" method="post">
+          <p><input type="text" name="afterTitle" value = "${topic[0].title}" placeholder="title"></p>
+          <p><input type="hidden" name="id" value = "${queryData.id}"></p>
+          <p>
+            <textarea name="description" placeholder="description">${topic[0].description}</textarea>
+          </p>
+          <p>
+            <input type="submit">
+          </p>
+        </form>
+        `
+          );
+          response.writeHead(200);
+          response.end(html);
+        }
+      );
+      console.log(list);
     });
   } else if (pathname === "/update_process") {
     var body = "";
@@ -167,15 +143,18 @@ var app = http.createServer(function (request, response) {
     });
     request.on("end", function () {
       var post = qs.parse(body);
-      var id = post.id;
-      var title = post.title;
+      var afterTitle = post.afterTitle;
       var description = post.description;
-      fs.rename(`data/${id}`, `data/${title}`, function (error) {
-        fs.writeFile(`data/${title}`, description, "utf8", function (err) {
-          response.writeHead(302, { Location: `/?id=${title}` });
+      var id = post.id;
+
+      db.query(
+        `UPDATE topic SET title = "${afterTitle}", description = "${description}" WHERE id = ${id}`,
+        (err, data) => {
+          if (err) throw err;
+          response.writeHead(302, { Location: `/?id=${id}` });
           response.end();
-        });
-      });
+        }
+      );
     });
   } else if (pathname === "/delete_process") {
     var body = "";

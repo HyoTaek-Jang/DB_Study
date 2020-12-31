@@ -152,3 +152,10 @@ db.query(
 ```
 
 - result.insertId로 방금 insert한 row의 id를 받을 수 있음. 저거 ?는 다음 인자로 ,[]리스트에 값 순서대로 넣어주면 됨
+
+* db활용하여 update 기능 구현, db는 title로 읽는게 아닌 id로 읽기에 id를 전달 받아야함 폼에서
+
+```
+        `UPDATE topic SET title = "${afterTitle}", description = "${description}" WHERE id = ${id}`,
+
+```
