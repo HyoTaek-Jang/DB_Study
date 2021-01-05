@@ -121,25 +121,34 @@ var app = http.createServer(function (request, response) {
       db.query(
         `SELECT * FROM topic WHERE id = ${queryData.id}`,
         (err, topic) => {
-          var html = template.HTML(
-            `${topic[0].title} - Update`,
-            list,
-            "",
-            `
-        <form action="/update_process" method="post">
-          <p><input type="text" name="afterTitle" value = "${topic[0].title}" placeholder="title"></p>
-          <p><input type="hidden" name="id" value = "${queryData.id}"></p>
-          <p>
-            <textarea name="description" placeholder="description">${topic[0].description}</textarea>
-          </p>
-          <p>
-            <input type="submit">
-          </p>
-        </form>
-        `
-          );
-          response.writeHead(200);
-          response.end(html);
+          db.query("SELECT * FROM author", (err, authors) => {
+            var html = template.HTML(
+              `${topic[0].title} - Update`,
+              list,
+              "",
+              `
+          <form action="/update_process" method="post">
+            <p><input type="text" name="afterTitle" value = "${
+              topic[0].title
+            }" placeholder="title"></p>
+            <p><input type="hidden" name="id" value = "${queryData.id}"></p>
+            <p>
+              <textarea name="description" placeholder="description">${
+                topic[0].description
+              }</textarea>
+            </p>
+            <p>
+            ${template.tag(authors, topic[0].author_id)}
+            </p>
+            <p>
+              <input type="submit">
+            </p>
+          </form>
+          `
+            );
+            response.writeHead(200);
+            response.end(html);
+          });
         }
       );
       console.log(list);
@@ -154,9 +163,10 @@ var app = http.createServer(function (request, response) {
       var afterTitle = post.afterTitle;
       var description = post.description;
       var id = post.id;
-
+      var author = post.author;
+      console.log(post);
       db.query(
-        `UPDATE topic SET title = "${afterTitle}", description = "${description}" WHERE id = ${id}`,
+        `UPDATE topic SET title = "${afterTitle}", description = "${description}", author_id="${author}" WHERE id = ${id}`,
         (err, data) => {
           if (err) throw err;
           response.writeHead(302, { Location: `/?id=${id}` });

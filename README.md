@@ -159,3 +159,8 @@ db.query(
         `UPDATE topic SET title = "${afterTitle}", description = "${description}" WHERE id = ${id}`,
 
 ```
+
+### 21년 1월 6일
+
+- db활용하여 콤보박스 업데이트 구현 완료
+- select 안에 option 있자나? 옵션에 셀렉트 넣으면 그게 선택됨
