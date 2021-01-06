@@ -9,6 +9,7 @@ module.exports = {
     </head>
     <body>
       <h1><a href="/">WEB</a></h1>
+      <a href="/author">author</a>
       ${list}
       ${control}
       ${body}
@@ -29,7 +30,7 @@ module.exports = {
     return list;
   },
   tag: function (authors, author_id) {
-    tag = ``;
+    var tag = ``;
     for (let i = 0; i < authors.length; i++) {
       selected = "";
       if (author_id === authors[i].id) {
@@ -40,5 +41,26 @@ module.exports = {
       }</option>    `;
     }
     return `<select name="author">${tag}</select>`;
+  },
+  table: function (author) {
+    let tableList = `<table border = "1px">
+      <tr>
+            <td>NAME</td>
+            <td>PROFILE</td>
+            <td>update</td>
+            <td>del</td>
+            </tr>`;
+    for (i = 0; i < author.length; i++) {
+      tableList += `<tr>
+        <td>${author[i].name}</td>
+        <td>${author[i].profile}</td>
+        <td><a href="/author_update?id=${author[i].id}">update</a></td>
+        <td><a href="/author_del">del</a></td>
+        </tr>`;
+    }
+    tableList += `</table>`;
+
+    console.log(tableList);
+    return tableList;
   },
 };
