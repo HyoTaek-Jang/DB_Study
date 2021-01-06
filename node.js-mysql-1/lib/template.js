@@ -36,9 +36,7 @@ module.exports = {
       if (author_id === authors[i].id) {
         selected = " selected";
       }
-      tag += `   <option value="${i + 1}"${selected}>${
-        authors[i].name
-      }</option>    `;
+      tag += `   <option value="${authors[i].id}"${selected}>${authors[i].name}</option>    `;
     }
     return `<select name="author">${tag}</select>`;
   },
@@ -55,7 +53,13 @@ module.exports = {
         <td>${author[i].name}</td>
         <td>${author[i].profile}</td>
         <td><a href="/author_update?id=${author[i].id}">update</a></td>
-        <td><a href="/author_del">del</a></td>
+        <td>
+        <form action="author_delete_process" method="post">
+                  <input type="hidden" name="id" value="${author[i].id}">
+                  <input type="submit" value="delete">
+                </form>
+        
+        </td>
         </tr>`;
     }
     tableList += `</table>`;

@@ -33,7 +33,6 @@ exports.page = function (request, response) {
       [queryData.id],
       (err, topic) => {
         if (err) throw error;
-        console.log(topic);
         var title = topic[0].title;
         var description = topic[0].description;
         var list = template.list(topics);
@@ -96,7 +95,6 @@ exports.create_process = (request, response) => {
     var title = post.title;
     var description = post.description;
     var name = post.author;
-    console.log(name);
     db.query(
       `INSERT INTO topic (title, description, created, author_id) VALUES(?, ?, NOW(), ?)`,
       [post.title, description, post.author],
@@ -158,7 +156,6 @@ exports.update_process = (request, response) => {
     var description = post.description;
     var id = post.id;
     var author = post.author;
-    console.log(post);
     db.query(
       `UPDATE topic SET title = "${afterTitle}", description = "${description}", author_id="${author}" WHERE id = ${id}`,
       (err, data) => {
