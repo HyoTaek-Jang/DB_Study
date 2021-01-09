@@ -9,7 +9,18 @@ module.exports = {
     </head>
     <body>
       <h1><a href="/">WEB</a></h1>
+      <h2>Search</h2>
+    <form action="/search_process" method="POST">
+        <select name="kind" id="">
+            <option value="author">author</option>
+            <option value="topic" selected>topic</option>
+        </select>
+        <input type="text" name="search" placeholder="입력하세요">
+        <input type="submit" value="submit">
+        <br>
+        <h2>
       <a href="/author">author</a>
+      </h2>
       ${list}
       ${control}
       ${body}
@@ -64,7 +75,6 @@ module.exports = {
     }
     tableList += `</table>`;
 
-    console.log(tableList);
     return tableList;
   },
 };

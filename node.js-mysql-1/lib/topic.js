@@ -182,3 +182,36 @@ exports.delete = (request, response) => {
     });
   });
 };
+
+exports.search_process = (request, response) => {
+  var body = ``;
+  request.on("data", (data) => {
+    body += data;
+  });
+  request.on("end", () => {
+    var post = qs.parse(body);
+    var kind = post.kind;
+    var search = post.search;
+    if (kind == "topic") {
+      db.query("SELECT * FROM topic WHERE title = ?", [search], (err, data) => {
+        if (data[0] === undefined) {
+          response.writeHead(302, { Location: `/` });
+          response.end();
+        } else {
+          response.writeHead(302, { Location: `/?id=${data[0].id}` });
+          response.end();
+        }
+      });
+    } else {
+      db.query("SELECT * FROM author WHERE name = ?", [search], (err, data) => {
+        if (data[0] === undefined) {
+          response.writeHead(302, { Location: `/` });
+          response.end();
+        } else {
+          response.writeHead(302, { Location: `/author` });
+          response.end();
+        }
+      });
+    }
+  });
+};
