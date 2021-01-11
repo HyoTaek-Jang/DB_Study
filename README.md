@@ -187,3 +187,13 @@ db.query(
 
 - 서치 기능구현. db에서 읽을때 대소문자 구분없이 읽힘.
 - 노드에서 alert를 못부름 js의 부분이 아닌 윈도우 객체의 일부분이라서 ㅇㅇ
+
+### 21년 1월 11일
+
+- 요라밍 db 다루기 연습을 위해 디렉토리 생성. express myapp으로!
+- 응답의 종류 ex) res.send() ...
+  res.send(): 문자열로 응답한다.<br>
+  res.json(): Json 객체로 응답한다.<br>
+  res.render(): Jade같은 템플릿을 렌더링한다.
+  <br> res.sendfile(): 파일 다운로드로 응답한다.
+  <br> res.set(): 헤더 값을 세팅한다. 세팅 후 res.send()를 호출하면 바디없이 헤더만 보낼 수 있다.
