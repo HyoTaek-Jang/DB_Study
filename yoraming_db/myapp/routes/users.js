@@ -1,9 +1,11 @@
-var express = require('express');
+var express = require("express");
+const template = require("../lib/template");
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get("/", function (req, res, next) {
+  html = template.index("");
+  res.send(html);
 });
 
 module.exports = router;

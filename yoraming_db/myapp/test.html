@@ -6,7 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    <img src="./images/img.jpg" alt="">
+    <form action="/classification" method="POST">
+            <select name="classification" id="" onchange="this.form.submit()">
+            <option value="교양필수">교양필수</option>
+            <option value="전공필수">전공필수</option>
+            <option value="전공선택">전공선택</option>
+            </select>
+            <input type="submit" value="submit">
+    </form>
 
 </body>
 </html>
