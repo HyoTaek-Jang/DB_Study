@@ -9,7 +9,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get("/", (req, res) => {
   db.query("SELECT * FROM cyber_ver3", (err, data) => {
-    db.query("SELECT * FROM user", (err, user) => {
+    db.query("SELECT * FROM user order by id", (err, user) => {
       let classification = ``;
       if (user != undefined) {
         userList = template.yoramDBAll(user);
