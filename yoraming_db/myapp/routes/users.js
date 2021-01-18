@@ -7,6 +7,16 @@ const { classification } = require("../lib/template");
 
 router.use(bodyParser.urlencoded({ extended: false }));
 
+// router.use((req, res, next) => {
+//   console.log(req.body);
+//   res.send("♥사랑해 능력자 용진♥나만의 어벤져스♥");
+// });
+
+router.post("/", (req, res) => {
+  console.log(req.body);
+  res.redirect("/");
+});
+
 router.get("/", (req, res) => {
   db.query("SELECT * FROM cyber_ver3", (err, data) => {
     db.query("SELECT * FROM user order by id", (err, user) => {
@@ -79,6 +89,10 @@ router.post("/search", (req, res) => {
       });
     }
   );
+});
+
+router.get("/exam", (req, res) => {
+  res.send("blaahal");
 });
 
 router.post("/save", (req, res) => {

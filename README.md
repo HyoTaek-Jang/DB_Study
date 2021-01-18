@@ -214,3 +214,17 @@ db.query(
 - 찐으로 외부에 공개하기 : ngrok 사용
 - $ npm i -g ngrok
 - ngrok http [PORT 번호]
+
+- JSON 뽑기 content-type, referer 헤더에 필요함.
+- 바디는 {
+  "url": "/uni/uni/cour/curi/findCourCurriculumInq.action",
+  "param": {
+  "strYy": "2020",
+  "strMjCd": "DS03001022001",
+  "strFg": "1"
+  }
+  }
+
+### 21년 1월 14일
+
+- 포스트 때린 데이터 받기. app.use나 app.post("~")로 받는다. 포스트 때릴때 컨텐츠 타입을 제대로 지정해줘야함. 제이슨으로 보낼거면 컨텐츠타입도 제이슨으로!
