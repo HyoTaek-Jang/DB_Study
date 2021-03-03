@@ -1,6 +1,6 @@
 ## SQL 문법의 종류
 
-- DDL : 데이터 정의 언어, 각 릴레이션을 저의하기 위해 사용하는 언어 (CREATE, ALTER, DROP)
+- DDL : 데이터 정의 언어, 각 릴레이션을 정의하기 위해 사용하는 언어 (CREATE, ALTER, DROP)
 - DML : 데이터 조작 언어, 데이터를 관리 하는 언어(SELECT, INSERT, UPDATE)
 - DCL : 데이터 제어 언어, 사용자 관리 및 사용자별로 릴레이션 또는 데이터를 관리하고 접근하는 권한을 다루기 위한 언어. (GRANT, REVOKE)
 
@@ -132,3 +132,66 @@ TRUNCATE TABLE EMP;
 - 키의 두가지 특징
   1. 중복된 값을 허용하지 않음. 유일성
   2. 최소성
+
+### 후보키
+
+    - 각각의 레코드를 식별할 수 있는 고유 속성의 집합. 유일성과 최소성 모두 만족
+    - 하지만 항상 후보키가 단일 필드로 이루어지지는 않음
+
+### 기본키
+
+    - 후보키 중에서 선택하는 주 키로 1개만 지정
+    - 기본키로 선택되면 NULL이 안되고 중복 값 또한 저장할 수 없다.
+
+### 대체키
+
+    - 후보키가 둘 이상이면 기본키를 제외한 나머지 후보키가 대체키임
+
+### 슈퍼키
+
+    - 슈퍼키는 테이블에서 각각의 레코드를 식별할 수 있는 하나 또는 여러 개 속성의 집합
+    - 유일성만 만족하면 모두가 슈퍼키
+    - 묶음으로 가능
+
+```sql
+CREATE TABLE CON2(
+NAME	VARCHAR(10),
+AGE 	INT					UNIQUE
+);
+
+위 구문에서 unique는 중복 값을 막음
+```
+
+### 외래키
+
+    - 다른 테이블의 기본키를 참조하는 속성
+    - 기본키와 외래키 사이의 관계가 항상 유지되어야함. -> 참조 무결성
+
+```sql
+ALTER TABLE <테이블 명> ADD CONSTRAINT <제약 조건 명> FOREIGN KEY (칼럼 명) REFERENCES <부모 테이블> (부모 테이블의 기본키 필드명);
+
+ALTER TABLE EMP_ORDER ADD CONSTRAINT FK_ORDER_EMP_ID FOREIGN KEY(EMP_ID) REFERENCES EMP(EMP_ID);
+```
+
+### ON키워드
+
+- ON UPDATE <제약조건>
+- ON DELETE <제약조건>
+- 제약 조건 : NO ACTION(default), RESTRICT : 참조하는 테이블에서 해당 레코드의 기본키를 더이상 참조하지 않아야 수정 삭제 가능.
+
+- ON UPDATE,DEL SET NULL : 기본키가 바뀌면 NULL로 외래키 바꿈, 그래서 꼭 외래 테이블은 NULL 허용
+
+### 제약 조건 제거
+
+- 변경이 불가함. 제거하고 새로 만들어야함.
+
+```
+PRIMARY KEY 제약 조건 제거하기
+: ALTER TABLE <테이블 명>  DROP PRIMARY KEY;
+
+UNIQUE 제약 조건 제거하기
+: ALTER TABLE <테이블 명>  DROP INDEX <제약 조건 명>;
+
+외래키 제약 조건 제거하기
+: ALTER TABLE <테이블 명>  DROP FOREIGN KEY <제약 조건 명>;
+```
