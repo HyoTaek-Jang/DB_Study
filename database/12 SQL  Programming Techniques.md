@@ -35,7 +35,8 @@ SQL을 프로그램 안에 임베디드 시킴.
 
 ### Embedded SQL and SQLJ
 
-Embedded SQL -> C
+## Embedded SQL -> C
+
 프로그래밍 렝귀지에 새로운 키워드가 들가햐암 -> EXEC SQL 여기부터 SQL이라는거. 그 후 ;로 끝냄
 플밍이랑 쿼리에서 둘다 사용하기 위한 Shared variables ㅇㅒ 앞에는 :이 붙음
 
@@ -81,16 +82,21 @@ EXEC SQL IPEN EMP 커서 오픈
 
 Fetch orientation. 위치조정 가능 NEXT, PRIOR, FIRTST, LAST, ABSOLUTE i, and RELATIVE i 이렇게
 
-SQLJ -> java
+## SQLJ -> java
 
 모든 SQL을 지원하는건 아님.
 클래스를 임포트해야함.
 익셉션 핸들링 사용함
 
 트라이 캐치함.
-#sql 키워드를 넣고 {} 안에 시퀄 넣음. :앞에 붙이면 쉐어드변수
 
+### 싱글 튜플
+
+트라이 안에 #sql 키워드를 넣고 {} 안에 시퀄 넣음. :앞에 붙이면 쉐어드변수
+그리고 캐치에서 SQLException 걸어줌
 멀티플하면 이터레이터를 사용함.
+
+### 멀티 튜플
 
 1. named iterator
    #sql iterator Emp(String fname ...); // 이런식으로 타입과 변수명이 같이 쓰임
@@ -102,4 +108,60 @@ SQLJ -> java
 2. position iterator
 
 #sql iterator Emppos(String ..); // 타입만 적혀있음
-강의노트참고
+Emppos e = null
+#sql e = {select ssn, fname, minit .... from EMPLOYEE where Dno = :dnumber};
+while (!e.endFetch()){
+~
+#sql { fetch :e into :ssn, :fn, :mi, :ln};
+};
+e.close();
+
+---
+
+SQL Call Level Interface (SQL/CLI) : function call하기위해 API가 있음
+
+## using C
+
+Environment record : 하나 또는 그 이상의 디비 커넥션
+Connection record : 커넥션 중 특정 커넥션
+statement record : 익스큐전할 스테이트 먼트
+Description record : xbvmfdlsk vkfkalxjdp eogks wjdqh
+Handle to the record : 튜플에대한 레코드가 필요함
+
+ret1 = SQLAllocHandle(SQL_HADLE_ENC, SQL_NULL_HANDLE, &env1); -> env에 대한 핸들러로 정의됨
+강의노트 참고
+
+---
+
+## using java
+
+JDBC를 사용함. 통합라이브러리의 느낌 db를 커넥션하는 라이브러리
+싱글 자바가 여러 디비 연결이 됨
+
+기본세팅
+Connection object
+statement object
+question mark ? symbol
+resultSet object
+
+import java.sql.\*;
+
+Calss.forName("~~") 난 이 db를 쓰겠다!
+쿼리문을 String으로 하고 Prepared
+강노 참고
+
+## 많이 안쓰지만 stored procedures and func
+
+dbms가 프로그램 모듈을 저장함 -> Stored procedure
+extensions to SQL -> 일반적인 프로그래밍 랭귀지 기본 기능
+
+db프로그램이 여러 앱에 필요할때 사용함
+데이터 트랜스퍼나 커뮤니케이션 코스트가 줄어듬
+리턴벨류가 없으면 procedure
+리턴벨류 있으면 function
+
+파라미터는 SQL data type을 갖고있음
+파라미터 앞에는 IN, OUT or INOUT
+
+부를땐
+CALL <procedure or funtion name>(<arg>);
