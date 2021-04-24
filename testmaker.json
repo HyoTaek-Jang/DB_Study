@@ -1,0 +1,175 @@
+// entity : User, TestTotal, MultipleTest, PersonalityTest, TendencyTest
+
+User {
+    "user_pk" : 1, // AI
+    "user_id" : "taek",
+    "user_pwd" : "a123",
+    "user_email" : "taek@gmail.com",
+    "user_email_auth" : true,
+    "user_nickname" : "BAAAM",
+    "user_made" : [1, 567, 888], // test id
+    "user_played" : [23, 55, 99] // test id
+}
+
+TestTotal{
+    "test_id" : 1, // AI, pk
+    "test_maker" : 1, // user pk 
+    "test_name" : "hehe",
+    "test_discription" : "주저리 주저리",
+    "test_thumbnail" : "path",
+    "test_URL" : "URL",
+    "test_promotion" : "URL",
+    "test_like" : 123,
+    "test_views" : 5000,
+    "test_tags" : ["친목", "아이돌"],
+    "test_isPublic" : true,
+    "test_onFeed" : true,
+    "test_thema" : "black",
+    "test_public_comment" : [
+        {
+            "user_pk" : 12, // or NULL
+            "public_comment" : "와우 꿀잼!"
+        }
+    ],
+    "test_private_commnet" : [
+        {
+            "user_pk" : 1,
+            "private_commnet" : "한마디 두마디"
+        }
+    ]
+}
+ 
+MultipleTest{
+    "test_id" : 1, // testid fk
+    // "multiple_name" : "hehe",
+    // "multiple_thumbnail" : "path", 어디에 넣는게 좋을까 
+    "multiple_target" : "firend",
+    "multiple_total_score" : 12,
+    "multiple_total_question" : 9,
+    "multiple_question" : [
+        {
+            "question_title" : "내가 제일 좋아하는 여행지는?",
+            "question_img" : "URL",
+            "question_score" : 2,
+            "question_answer" : [
+                {
+                    "answer_content" : "보라카이", 
+                    "answer_count" : 12,
+                    "answer_bool" : false
+                },
+                {
+                    "answer_content" : "괌",
+                    "answer_count" : 10,
+                    "answer_bool" : true
+                }
+            ]
+        }
+    ],
+    "multiple_result" : [
+        {
+            "result_point_bound" : 0, // 0점 이상
+            "result_title" : "바보바보",
+            "result_img" : "URL",
+            "result_discription" : "나에 대해 그것도 모르다니 오늘 술은 너가 사라",
+            "user_pk" : [1,543,23] // 해당 결과를 받은 사람. 
+
+        },
+        {
+            "result_point_bound" : 10, // 0점 이상
+            "result_title" : "천재",
+            "result_img" : "URL",
+            "result_discription" : "갬덩이구나",
+            "user_pk" : [3,2113] // 해당 결과를 받은 사람. 
+
+        }
+    ],
+
+}
+
+PersonalityTest{
+    "test_id" : 6, // testid fk
+     "personality_total_question" : 12,
+    "personality_total_EI" : 3,
+    "personality_total_SN" : 3,
+    "personality_total_TF" : 3,
+    "personality_total_JP" : 3,
+    "personality_question" : [ 
+        {
+            "question_title" : "밥 먹을 때 숟가락 왼손에?",
+            "question_img" : "URL",
+            "question_answer" : [
+                {
+                    "answer_content" : "ㅇㅇ",
+                    "answer_count" : 12,
+                    "answer_type" : "E"
+                },
+                {
+                    "answer_content" : "ㄴㄴ",
+                    "answer_count" : 10,
+                    "answer_type" : "I"
+                }
+            ]
+        }
+    ],
+    "personality_result" : [
+        {
+            "result_type" : "ENTP", 
+            "result_title" : "당신은 entp!",
+            "result_img" : "URL",
+            "result_discription" : "졸립니다!",
+            "user_pk" : [1,543,23] // 해당 결과를 받은 사람. 
+
+        },
+        {
+            "result_point_bound" : "ENFJ",
+            "result_title" : "이게 오바마랑 같은건가",
+            "result_img" : "URL",
+            "result_discription" : "예아!",
+            "user_pk" : [14231,5343,2323] // 해당 결과를 받은 사람. 
+
+        }
+    ],
+
+}
+
+TendencyTest{
+    "test_id" : 144, // testid fk
+    "tendency_total_question" : 9,
+    "tendency_question" : [
+        {
+            "question_title" : "밥버거 맛있을까 뭐가 맛있을까?",
+            "question_img" : "URL",
+            "question_answer" : [
+                {
+                    "answer_content" : "참치마요", 
+                    "answer_count" : 12,
+                    "answer_type" : "A"
+                },
+                {
+                    "answer_content" : "소야볶",
+                    "answer_count" : 10,
+                    "answer_type" : "B"
+                }
+            ]
+        }
+    ],
+    "tendency_result" : [
+        {
+            "result_type" : "A",
+            "result_title" : "밥버거 잘알",
+            "result_img" : "URL",
+            "result_discription" : "나에 대해 그것도 모르다니 오늘 술은 너가 사라",
+            "user_pk" : [1,543,23] // 해당 결과를 받은 사람. 
+
+        },
+        {
+            "result_type" : "B",
+            "result_title" : "햄버거도 좋앙",
+            "result_img" : "URL",
+            "result_discription" : "갬덩이구나",
+            "user_pk" : [3,2113] // 해당 결과를 받은 사람. 
+
+        }
+    ],
+
+}
