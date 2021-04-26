@@ -2,7 +2,7 @@
 
 User {
     "user_pk" : 1, // AI
-    "user_id" : "taek",
+    "user_id" : "taek", // pk
     "user_pwd" : "a123",
     "user_email" : "taek@gmail.com",
     "user_email_auth" : true,
@@ -75,7 +75,7 @@ MultipleTest{
 
         },
         {
-            "result_point_bound" : 10, // 0점 이상
+            "result_point_bound" : 10, // 10점 이상
             "result_title" : "천재",
             "result_img" : "URL",
             "result_discription" : "갬덩이구나",
@@ -172,4 +172,48 @@ TendencyTest{
         }
     ],
 
+}
+
+
+
+{
+    [
+        {
+            "title" : "성격 유형검사 MBTI Test",
+            "coverImg" : "https://google.storage/path/to/img",
+            "rate" : 1,
+            "testLink" : "https://my-app.test/1"
+       },
+       {
+            "title" : "성격 유형검사 MBTI Test",
+            "coverImg" : "https://google.storage/path/to/img",
+            "rate" : 2,
+            "testLink" : "https://my-app.test/1"
+        },
+        {
+            "title" : "성격 유형검사 MBTI Test",
+            "coverImg" : "https://google.storage/path/to/img",
+            "rate" : 3,
+            "testLink" : "https://my-app.test/1"
+       },
+       {
+            "title" : "성격 유형검사 MBTI Test",
+            "coverImg" : "https://google.storage/path/to/img",
+            "rate" : 4,
+            "testLink" : "https://my-app.test/1"
+        },
+        {
+            "title" : "성격 유형검사 MBTI Test",
+            "coverImg" : "https://google.storage/path/to/img",
+            "rate" : 5,
+            "testLink" : "https://my-app.test/1"
+       },
+    ]
+}
+
+//닉네임, 좋아요, 참가수,
+{
+    "nickname" : "규원짱",
+    "testParticipantsCnt" : 70,
+    "testsLikedCnt" : 30
 }

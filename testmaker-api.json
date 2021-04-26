@@ -1,0 +1,123 @@
+{
+
+}
+
+{
+    "totalPoints": 50,
+    "testId": 8370982749,
+    "target": "friend",
+    "optionsCnt": 3,
+    "resultsCnt" : 3,
+    "questions": [
+      {
+        "img": "https://~",
+        "point": "3",
+        "question": "내가 좋아하는 여행지는?",
+        "options": ["보라카이","괌", "런던"],
+        "answer": 2
+      },
+      {
+        "img": "https://~",
+        "point": "3",
+        "question": "내가 좋아하는 음식?",
+        "options": ["버거","피자", "밥"],
+        "answer": 0
+      }
+    ],
+    "results": [
+      {
+        "cnt": 12,
+        "descriptions": "내 찐친 야호",
+        "img": "path",
+        "title": "당신은 내 찐친 찐찐찐",
+        "pointBound": {"end": 5, "start": 3}
+      },
+      {
+        "cnt": 10,
+        "descriptions": "가짜친구",
+        "img": "path",
+        "title": "에라이",
+        "pointBound": {"end": 2, "start": 0}
+      }
+    ]
+}
+  
+{
+    "repliesCnt": 1353,
+    "createdAt": 1619324817995,
+    "tags": ["성격테스트", "우정테스트", "BTS"],
+    "uid": "{test_id}",
+    "questionId": "{tendencyQuestionId}",
+    "coverImg": "https://google.storage/path/to/img",
+    "maker": "<reference>",
+    "participantsCnt": 3258,
+    "description": "총 검사 시간은 12분 내외입니다. 혹 질문이 마음에 들지 않더라도 정직하게 답변하십시오. 가능하면 답변 시 '중립'을 선택하지 마십시오. ",
+    "themeRef": "<reference>",
+    "likesCnt": 30,
+    "title": "성격 유형검사 MBTI Test",
+    "testLink": "https://my-app.test/1",
+    "onFeed": true,
+    "isDisabled": false,
+    "isSubmitted": false,
+    "type": "tendency"
+  }
+
+
+  {
+      [
+          "내가 가장 가고싶은 여행지는?",
+          "나의 주량은??",
+          "노래방 18번?",
+          "밥 먹을 때 숟가락 드는 손은?",
+          "가장 많이 울었던 영화는?",
+      ]
+  }
+  
+  ---
+  
+"createdAt": 1619324817995,
+"makerName" : "규원짱"
+"makerUid" : {makerUid},
+"title": "성격 유형검사 MBTI Test",
+"coverImg": "https://google.storage/path/to/img",
+"description": "총 검사 시간은 12분 내외입니다. 혹 질문이 마음에 들지 않더라도 정직하게 답변하십시오. 가능하면 답변 시 '중립'을 선택하지 마십시오. ",
+"target" : "friend",
+"tags": ["성격테스트", "우정테스트", "BTS"],
+"optionsCnt": 3,
+"resultsCnt" : 3,
+"onFeed": true,
+"isDisabled": false,
+"isSubmitted": false,
+"type": "tendency"
+"questions": [
+    {
+    "img": "https://~",
+    "point": "3",
+    "question": "내가 좋아하는 여행지는?",
+    "options": ["보라카이","괌", "런던"],
+    "answer": 2
+    },
+    {
+    "img": "https://~",
+    "point": "3",
+    "question": "내가 좋아하는 음식?",
+    "options": ["버거","피자", "밥"],
+    "answer": 0
+    }
+],
+"results": [
+    {
+    "cnt": 12,
+    "descriptions": "내 찐친 야호",
+    "img": "path",
+    "title": "당신은 내 찐친 찐찐찐",
+    "pointBound": {"end": 5, "start": 3}
+    },
+    {
+    "cnt": 10,
+    "descriptions": "가짜친구",
+    "img": "path",
+    "title": "에라이",
+    "pointBound": {"end": 2, "start": 0}
+    }
+]
