@@ -121,3 +121,49 @@
     "pointBound": {"end": 2, "start": 0}
     }
 ]
+
+{
+  "resultOfUser": {
+    "result": 0,
+    "img": "https:/~~",
+    "title": "찐친",
+    "description": "당신은 나의 찐친입니다에 대한 설명이 나오는 부분입니다."
+  },
+  "results": [
+    {
+      "title": "찐친",
+      "percent": 73.4
+    },
+    {
+      "title": "찐친",
+      "percent": 20.1
+    },
+    {
+      "title": "지인",
+      "percent": 7.5
+    }
+  ]
+}
+
+{
+  "resultOfUser": {
+    "result": 0,
+    "img": "https:/~~",
+    "title": "찐친",
+    "description": "당신은 나의 찐친입니다에 대한 설명이 나오는 부분입니다."
+  },
+  "results": [
+    {
+      "title": "찐친",
+      "percent": 73.4
+    },
+    {
+      "title": "찐친",
+      "percent": 20.1
+    },
+    {
+      "title": "지인",
+      "percent": 7.5
+    }
+  ]
+}
